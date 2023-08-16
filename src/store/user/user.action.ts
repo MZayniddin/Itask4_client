@@ -16,13 +16,13 @@ export const getUsers = () => async (dispatch: Dispatch) => {
 };
 
 export const blockUser =
-  (usersIdArray: number[] | string[], navigate) =>
+  (usersIdArray: number[] | string[], navigate: any) =>
   async (dispatch: Dispatch) => {
     usersIdArray.map(async (id) => {
       try {
         await api.blockUser(id);
         dispatch({ type: USER_ACTION_TYPES.BLOCK_USER, payload: id });
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
         alert(error.response?.data?.message);
         navigate("/auth");
@@ -31,7 +31,7 @@ export const blockUser =
   };
 
 export const unBlockUsers =
-  (usersIdArray: number[] | string[], navigate) =>
+  (usersIdArray: number[] | string[], navigate: any) =>
   async (dispatch: Dispatch) => {
     usersIdArray.map(async (id) => {
       try {
@@ -40,7 +40,7 @@ export const unBlockUsers =
           type: USER_ACTION_TYPES.UNBLOCK_USER,
           payload: id,
         });
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
         alert(error.response?.data?.message);
         navigate("/auth");
@@ -49,7 +49,7 @@ export const unBlockUsers =
   };
 
 export const deleteUsers =
-  (usersIdArray: number[] | string[], navigate) =>
+  (usersIdArray: number[] | string[], navigate: any) =>
   async (dispatch: Dispatch) => {
     usersIdArray.map(async (id) => {
       try {
@@ -58,7 +58,7 @@ export const deleteUsers =
           type: USER_ACTION_TYPES.DELETE_USER,
           payload: id,
         });
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
         alert(error.response?.data?.message);
         navigate("/auth");

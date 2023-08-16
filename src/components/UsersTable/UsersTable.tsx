@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
 import {
-  blockUsers,
   blockUser,
   deleteUsers,
   unBlockUsers,
@@ -26,10 +25,10 @@ const UsersTable = ({ users }: UserTableProps) => {
   const [selectedUsers, setSelectedUsers] = useState<string[] | number[]>([]);
   const [isCheckAll, setIsCheckAll] = useState(false);
 
-  const toggleUserSelection = (userId) => {
+  const toggleUserSelection = (userId: number) => {
     setSelectedUsers((prevSelected) =>
-      prevSelected.includes(userId)
-        ? prevSelected.filter((id) => id !== userId)
+      prevSelected.includes(userId as never)
+        ? prevSelected.filter((id: number) => id !== userId)
         : [...prevSelected, userId]
     );
   };
@@ -166,8 +165,8 @@ const UsersTable = ({ users }: UserTableProps) => {
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   <input
                     type="checkbox"
-                    onChange={() => toggleUserSelection(user.id)}
-                    checked={selectedUsers.includes(user.id)}
+                    onChange={() => toggleUserSelection(user.id as never)}
+                    checked={selectedUsers.includes(user.id as never)}
                   />
                 </td>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

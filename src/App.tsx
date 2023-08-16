@@ -23,8 +23,9 @@ const App = () => {
   const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    const decodedToken: MyToken =
-      jwtDecode(localStorage.getItem("token")) || null;
+    const decodedToken: MyToken = jwtDecode(
+      localStorage.getItem("token") as string
+    );
 
     if (decodedToken) {
       localStorage.setItem("user", decodedToken.displayname);
