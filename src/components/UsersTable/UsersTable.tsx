@@ -22,7 +22,7 @@ type UserTableProps = {
 const UsersTable = ({ users }: UserTableProps) => {
   const dispatch: Dispatch<any> = useDispatch();
   const navigate = useNavigate();
-  const [selectedUsers, setSelectedUsers] = useState<string[] | number[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [isCheckAll, setIsCheckAll] = useState(false);
 
   const toggleUserSelection = (userId: number) => {
@@ -35,7 +35,7 @@ const UsersTable = ({ users }: UserTableProps) => {
 
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
-    setSelectedUsers(users.map((user) => user.id));
+    setSelectedUsers(users.map((user) => +user.id));
     if (isCheckAll) {
       setSelectedUsers([]);
     }

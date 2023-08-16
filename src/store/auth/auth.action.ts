@@ -17,7 +17,7 @@ export const signInUser =
   };
 
 export const signUpUser =
-  (formData: FormDataType, navigate) => async (dispatch: Dispatch) => {
+  (formData: FormDataType, navigate: any) => async (dispatch: Dispatch) => {
     try {
       const { data } = await api.signUp(formData);
 
