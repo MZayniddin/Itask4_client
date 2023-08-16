@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
@@ -9,8 +10,10 @@ import {
   unBlockUsers,
 } from "../../store/user/user.action";
 
+import { selectIsUserLoading } from "../../store/user/user.selector";
+
 import { UserData } from "../../store/user/user.types";
-import { Dispatch } from "redux";
+import Spinner from "../Spinner/Spinner";
 
 const formatedDate = (date: string) =>
   format(new Date(date), "yyyy-mm-dd hh:mm");
@@ -24,6 +27,8 @@ const UsersTable = ({ users }: UserTableProps) => {
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [isCheckAll, setIsCheckAll] = useState(false);
+
+  const isLoading: boolean = useSelector(selectIsUserLoading);
 
   const toggleUserSelection = (userId: number) => {
     setSelectedUsers((prevSelected) =>
@@ -60,6 +65,8 @@ const UsersTable = ({ users }: UserTableProps) => {
     dispatch(deleteUsers(selectedUsers, navigate));
     clearSelectedUsersState();
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="w-full">

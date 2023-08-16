@@ -18,6 +18,8 @@ export const getUsers = () => async (dispatch: Dispatch) => {
 export const blockUser =
   (usersIdArray: number[] | string[], navigate: any) =>
   async (dispatch: Dispatch) => {
+    dispatch({ type: USER_ACTION_TYPES.USER_LOADING_START });
+
     usersIdArray.map(async (id) => {
       try {
         await api.blockUser(id);
@@ -28,11 +30,15 @@ export const blockUser =
         navigate("/auth");
       }
     });
+
+    dispatch({ type: USER_ACTION_TYPES.USER_LOADING_END });
   };
 
 export const unBlockUsers =
   (usersIdArray: number[] | string[], navigate: any) =>
   async (dispatch: Dispatch) => {
+    dispatch({ type: USER_ACTION_TYPES.USER_LOADING_START });
+
     usersIdArray.map(async (id) => {
       try {
         await api.unBlockUser(id);
@@ -46,11 +52,15 @@ export const unBlockUsers =
         navigate("/auth");
       }
     });
+
+    dispatch({ type: USER_ACTION_TYPES.USER_LOADING_END });
   };
 
 export const deleteUsers =
   (usersIdArray: number[] | string[], navigate: any) =>
   async (dispatch: Dispatch) => {
+    dispatch({ type: USER_ACTION_TYPES.USER_LOADING_START });
+
     usersIdArray.map(async (id) => {
       try {
         await api.deleteUser(id);
@@ -64,4 +74,6 @@ export const deleteUsers =
         navigate("/auth");
       }
     });
+
+    dispatch({ type: USER_ACTION_TYPES.USER_LOADING_END });
   };
